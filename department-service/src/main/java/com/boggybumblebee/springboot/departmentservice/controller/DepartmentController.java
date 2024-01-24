@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -60,7 +61,7 @@ public class DepartmentController {
     @GetMapping("/with-employees")
     public List<Department> findAllWithEmployees() {
         LOGGER.info("Department find");
-        List<Department> departments = repository.findAll();
+        List<Department> departments = new ArrayList(repository.findAll());
         departments.forEach(department -> department.setEmployees(employeeClient.findByDepartment(department.getId())));
         return departments;
     }
