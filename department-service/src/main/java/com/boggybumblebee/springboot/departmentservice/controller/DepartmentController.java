@@ -9,11 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/department")
@@ -31,12 +34,12 @@ public class DepartmentController {
     CommandLineRunner initDepartments(DepartmentRepository repo) {
         return args -> {
             if (repo.findAll().isEmpty()) {
-                repo.addDepartment(new Department(1L, "HR"));
-                repo.addDepartment(new Department(2L, "Finance"));
-                repo.addDepartment(new Department(3L, "Operations"));
-                repo.addDepartment(new Department(4L, "Support"));
-                repo.addDepartment(new Department(5L, "Development"));
-                repo.addDepartment(new Department(6L, "Sales"));
+                repo.save(new Department(1L, "HR"));
+                repo.save(new Department(2L, "Finance"));
+                repo.save(new Department(3L, "Operations"));
+                repo.save(new Department(4L, "Support"));
+                repo.save(new Department(5L, "Development"));
+                repo.save(new Department(6L, "Sales"));
             }
         };
     }
@@ -44,7 +47,7 @@ public class DepartmentController {
     @PostMapping
     public Department add(@RequestBody Department department) {
         LOGGER.info("Department add: {}", department);
-        return repository.addDepartment(department);
+        return repository.save(department);
     }
 
     @GetMapping
@@ -56,19 +59,14 @@ public class DepartmentController {
     @GetMapping("/{id}")
     public Department findById(@PathVariable Long id) {
         LOGGER.info("Department find: id={}", id);
-        return repository.findById(id);
+        return repository.findById(id).orElseThrow();
     }
 
     @GetMapping("/with-employees")
     public List<Department> findAllWithEmployees() {
         LOGGER.info("Department find");
-        // Deep copy required to prevent injection of employees into original department list
-        List<Department> departments = deepCopyUsingCopyConstructor(repository.findAll());
+        List<Department> departments = repository.findAll();
         departments.forEach(department -> department.setEmployees(employeeClient.findByDepartment(department.getId())));
         return departments;
-    }
-
-    public static List<Department> deepCopyUsingCopyConstructor(List<Department> departments){
-        return departments.stream().map(Department::new).collect(Collectors.toList());
     }
 }

@@ -1,12 +1,21 @@
 package com.boggybumblebee.springboot.departmentservice.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Department {
-    private Long id;
+
+    private @Id
+    @GeneratedValue Long id;
     private String name;
+    @Transient
     private List<Employee> employees = new ArrayList<>();
 
     public Department() {
