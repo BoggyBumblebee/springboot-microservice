@@ -17,6 +17,12 @@ public class Department {
         this.name = name;
     }
 
+    public Department(Department department) {
+        this.id = department.getId();
+        this.name = department.getName();
+        this.employees = department.getEmployees();
+    }
+
     public Long getId() {
         return id;
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/department")
@@ -61,9 +62,13 @@ public class DepartmentController {
     @GetMapping("/with-employees")
     public List<Department> findAllWithEmployees() {
         LOGGER.info("Department find");
-        List<Department> departments = new ArrayList(repository.findAll());
+        // Deep copy required to prevent injection of employees into original department list
+        List<Department> departments = deepCopyUsingCopyConstructor(repository.findAll());
         departments.forEach(department -> department.setEmployees(employeeClient.findByDepartment(department.getId())));
         return departments;
     }
 
+    public static List<Department> deepCopyUsingCopyConstructor(List<Department> departments){
+        return departments.stream().map(Department::new).collect(Collectors.toList());
+    }
 }
