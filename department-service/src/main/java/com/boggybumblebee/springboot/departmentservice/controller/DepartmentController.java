@@ -7,6 +7,8 @@ import com.boggybumblebee.springboot.departmentservice.repository.DepartmentRepo
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +24,20 @@ public class DepartmentController {
 
     @Autowired
     private EmployeeClient employeeClient;
+
+    @Bean
+    CommandLineRunner initDepartments(DepartmentRepository repo) {
+        return args -> {
+            if (repo.findAll().isEmpty()) {
+                repo.addDepartment(new Department(1L, "HR"));
+                repo.addDepartment(new Department(2L, "Finance"));
+                repo.addDepartment(new Department(3L, "Operations"));
+                repo.addDepartment(new Department(4L, "Support"));
+                repo.addDepartment(new Department(5L, "Development"));
+                repo.addDepartment(new Department(6L, "Sales"));
+            }
+        };
+    }
 
     @PostMapping
     public Department add(@RequestBody Department department) {
