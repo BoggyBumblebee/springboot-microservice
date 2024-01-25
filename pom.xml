@@ -3,27 +3,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>springboot-microservice</artifactId>
-        <groupId>com.boggybumblebee.springboot</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <artifactId>service-registry</artifactId>
+    <groupId>com.boggybumblebee.springboot</groupId>
+    <artifactId>springboot-microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>service-registry</name>
-    <description>service-registry</description>
+    <name>springboot-microservice</name>
+    <description>The Spring Boot Microservice Example Application</description>
+    <packaging>pom</packaging>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
+    <modules>
+        <module>api-gateway</module>
+        <module>config-server</module>
+        <module>department-service</module>
+        <module>employee-service</module>
+        <module>service-registry</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <dependencyManagement>
