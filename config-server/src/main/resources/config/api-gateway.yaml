@@ -23,3 +23,7 @@ spring:
           uri: lb://department-service
           predicates:
             - Path=/department/**
+
+logging:
+  level:
+    com.boggybumblebee.springboot: DEBUG
