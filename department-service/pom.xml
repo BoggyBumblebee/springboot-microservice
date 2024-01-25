@@ -6,7 +6,6 @@
 		<artifactId>springboot-microservice</artifactId>
 		<groupId>com.boggybumblebee.springboot</groupId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>department-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -44,6 +43,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.boggybumblebee.springboot</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>

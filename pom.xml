@@ -19,6 +19,7 @@
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
     <modules>
+        <module>common</module>
         <module>api-gateway</module>
         <module>config-server</module>
         <module>department-service</module>
