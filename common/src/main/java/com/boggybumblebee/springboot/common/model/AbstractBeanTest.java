@@ -211,41 +211,34 @@ public abstract class AbstractBeanTest {
 
             switch (field.getType().getName()) {
                 case "java.lang.String":
-                    injectStringValue(field, instance, useMinimumValue);
+                    injectString(field, instance, useMinimumValue);
                     break;
-                case "boolean":
-                case "java.lang.boolean":
-                    injectBooleanValue(field, instance, useMinimumValue);
+                case "boolean", "java.lang.boolean":
+                    injectBoolean(field, instance, useMinimumValue);
                     break;
-                case "byte":
-                case "java.lang.Byte":
-                    injectByteValue(field, instance, useMinimumValue);
+                case "byte", "java.lang.Byte":
+                    injectByte(field, instance, useMinimumValue);
                     break;
-                case "short":
-                case "java.lang.Short":
-                    injectShortValue(field, instance, useMinimumValue);
+                case "short", "java.lang.Short":
+                    injectShort(field, instance, useMinimumValue);
                     break;
-                case "long":
-                case "java.lang.Long":
-                    injectLongValue(field, instance, useMinimumValue);
+                case "long", "java.lang.Long":
+                    injectLong(field, instance, useMinimumValue);
                     break;
-                case "int":
-                case "java.lang.Integer":
-                    injectIntegerValue(field, instance, useMinimumValue);
+                case "int", "java.lang.Integer":
+                    injectInteger(field, instance, useMinimumValue);
                     break;
-                case "float":
-                case "java.lang.Float":
-                    injectFloatValue(field, instance, useMinimumValue);
+                case "float", "java.lang.Float":
+                    injectFloat(field, instance, useMinimumValue);
                     break;
-                case "double":
-                case "java.lang.Double":
-                    injectDoubleValue(field, instance, useMinimumValue);
+                case "double", "java.lang.Double":
+                    injectDouble(field, instance, useMinimumValue);
                     break;
                 case "java.lang.BigDecimal":
-                    injectBigDecimalValue(field, instance, useMinimumValue);
+                    injectBigDecimal(field, instance, useMinimumValue);
                     break;
                 case "java.lang.TimeStamp":
-                    injectTimeStampValue(field, instance, useMinimumValue);
+                    injectTimeStamp(field, instance, useMinimumValue);
                     break;
 
                 default:
@@ -273,7 +266,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectStringValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectString(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Integer.toHexString(Integer.MIN_VALUE), field.getType());
         } else {
@@ -281,7 +274,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectBooleanValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectBoolean(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Boolean.TRUE, field.getType());
         } else {
@@ -289,7 +282,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectShortValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectShort(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Short.MIN_VALUE, field.getType());
         } else {
@@ -297,7 +290,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectLongValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectLong(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Long.MIN_VALUE, field.getType());
         } else {
@@ -305,7 +298,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectFloatValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectFloat(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Float.MIN_VALUE, field.getType());
         } else {
@@ -313,7 +306,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectIntegerValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectInteger(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Integer.MIN_VALUE, field.getType());
         } else {
@@ -321,7 +314,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectByteValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectByte(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Byte.MIN_VALUE, field.getType());
         } else {
@@ -329,7 +322,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectDoubleValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectDouble(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, Double.MIN_VALUE, field.getType());
         } else {
@@ -337,7 +330,7 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectBigDecimalValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectBigDecimal(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, BigDecimal.ONE, field.getType());
         } else {
@@ -345,11 +338,13 @@ public abstract class AbstractBeanTest {
         }
     }
 
-    private void injectTimeStampValue(Field field, Object instance, boolean useMinimumValue) {
+    private void injectTimeStamp(Field field, Object instance, boolean useMinimumValue) {
         if (useMinimumValue) {
             setPropertyValue(field.getName(), instance, new Timestamp(Integer.MIN_VALUE), field.getType());
         } else {
             setPropertyValue(field.getName(), instance, new Timestamp(Integer.MAX_VALUE), field.getType());
         }
     }
+
+
 }
