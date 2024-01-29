@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>employee-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.parent.version}</version>
 	<name>employee-service</name>
 	<description>employee-service</description>
 	<dependencies>
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>com.boggybumblebee.springboot</groupId>
 			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
