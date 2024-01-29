@@ -29,7 +29,7 @@ public class WebClientConfig {
     public EmployeeClient employeeClient() {
         HttpServiceProxyFactory httpServiceProxyFactory
                 = HttpServiceProxyFactory
-                .builder(WebClientAdapter.forClient(employeeWebClient()))
+                .builderFor(WebClientAdapter.create(employeeWebClient()))
                 .build();
         return httpServiceProxyFactory.createClient(EmployeeClient.class);
     }
