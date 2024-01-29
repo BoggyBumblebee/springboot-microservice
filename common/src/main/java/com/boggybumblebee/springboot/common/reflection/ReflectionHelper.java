@@ -46,9 +46,8 @@ public final class ReflectionHelper {
 			return Boolean.TRUE;
 		}
 		catch (Exception ignored) {
-
+			return Boolean.FALSE;
 		}
-		return Boolean.FALSE;
 	}
 
 	public static String getGetterMethodName(final String propertyName) {
@@ -76,7 +75,7 @@ public final class ReflectionHelper {
 			}
 		}
 		catch (Exception ignored) {
-
+			return Boolean.FALSE;
 		}
 		return Boolean.FALSE;
 	}
@@ -99,7 +98,7 @@ public final class ReflectionHelper {
 			}
 		}
 		catch (Exception ignored) {
-
+			return Boolean.FALSE;
 		}
 		return Boolean.FALSE;
 	}
