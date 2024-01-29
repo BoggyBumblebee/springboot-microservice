@@ -31,12 +31,12 @@ public class DepartmentController {
     CommandLineRunner initDepartments(DepartmentRepository repo) {
         return args -> {
             if (repo.findAll().isEmpty()) {
-                repo.save(new Department(1L, "HR"));
-                repo.save(new Department(2L, "Finance"));
-                repo.save(new Department(3L, "Operations"));
-                repo.save(new Department(4L, "Support"));
-                repo.save(new Department(5L, "Development"));
-                repo.save(new Department(6L, "Sales"));
+                repo.save(new Department("HR"));
+                repo.save(new Department("Finance"));
+                repo.save(new Department("Operations"));
+                repo.save(new Department("Support"));
+                repo.save(new Department("Development"));
+                repo.save(new Department("Sales"));
             }
         };
     }
