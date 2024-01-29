@@ -1,7 +1,6 @@
 package com.boggybumblebee.springboot.departmentservice.config;
 
 import com.boggybumblebee.springboot.departmentservice.client.EmployeeClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +11,11 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Configuration
 public class WebClientConfig {
 
-    @Autowired
-    private LoadBalancedExchangeFilterFunction filterFunction;
+    private final LoadBalancedExchangeFilterFunction filterFunction;
+
+    public WebClientConfig(LoadBalancedExchangeFilterFunction filterFunction) {
+        this.filterFunction = filterFunction;
+    }
 
     @Bean
     public WebClient employeeWebClient() {
