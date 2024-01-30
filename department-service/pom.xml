@@ -11,6 +11,12 @@
 	<artifactId>department-service</artifactId>
 	<name>department-service</name>
 	<description>department-service</description>
+	<properties>
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.basedir}/../report/target/site/jacoco-aggregate/jacoco.xml,
+			${project.basedir}/department-service/target/site/jacoco-aggregate/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
