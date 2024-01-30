@@ -20,7 +20,6 @@ public abstract class AbstractBeanTest {
      * <p>
      * This tests that every non-static, private Field has a Getter and Setter, and that the Getter returns what the Setter was provided with.
      */
-    // @Test
     public abstract void testPojoContractMet();
 
     /**
@@ -28,7 +27,6 @@ public abstract class AbstractBeanTest {
      * <p>
      * This tests that every non-static, private Field that is set with a new value produces a different result for the .equals(Object) method.
      */
-    // @Test
     public abstract void testEqualsContractMet();
 
     /**
@@ -36,7 +34,6 @@ public abstract class AbstractBeanTest {
      * <p>
      * This tests that every non-static, private Field that is set with a new value produces a different result for the .hashCode() method.
      */
-    // @Test
     public abstract void testHashCodeContractMet();
 
     /**
@@ -44,7 +41,6 @@ public abstract class AbstractBeanTest {
      * <p>
      * This test that the toString() method returns a string - very simplistic.
      */
-    // @Test
     public abstract void testToStringContractMet();
 
     /**
@@ -85,7 +81,6 @@ public abstract class AbstractBeanTest {
      * @param classUnderTest the Class Under Test
      */
     protected void assertMeetsEqualsContract(Class<?> classUnderTest) {
-
         Object instance1;
         Object instance2;
 
@@ -99,37 +94,31 @@ public abstract class AbstractBeanTest {
             Class<?> currentClass = classUnderTest;
 
             while (currentClass != Object.class) {
-
                 for (Field field : currentClass.getDeclaredFields()) {
-
                     // Reset the instances
                     instance1 = classUnderTest.getDeclaredConstructor().newInstance();
                     instance2 = classUnderTest.getDeclaredConstructor().newInstance();
 
                     // Ignore Fields that are not accessible (with a Getter/Setter)
-                    if (Modifier.isPrivate(field.getModifiers()) && !Modifier.isFinal(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())
+                    if (Modifier.isPrivate(field.getModifiers())
+                            && !Modifier.isFinal(field.getModifiers())
+                            && !Modifier.isStatic(field.getModifiers())
                             && !field.getType().isInterface()) {
 
-                        setFieldValueByFieldType(field, instance1, Boolean.TRUE);
-
+                        injectFieldValueByFieldType(field, instance1, Boolean.TRUE);
                         assertThat(instance1).isNotEqualTo(instance2);
 
                         setPropertyValue(field.getName(), instance2, getPropertyValue(field.getName(), instance1), field.getType());
-
                         assertThat(getPropertyValue(field.getName(), instance1)).isEqualTo(getPropertyValue(field.getName(), instance2));
                         assertThat(instance1).isEqualTo(instance2);
 
-                        setFieldValueByFieldType(field, instance2, Boolean.FALSE);
-
+                        injectFieldValueByFieldType(field, instance2, Boolean.FALSE);
                         assertThat(instance1).isNotEqualTo(instance2);
                     }
                 }
-
-                // Move to the Super Class, so we test all accessible Fields
                 currentClass = currentClass.getSuperclass();
             }
         } catch (Exception exception) {
-
             throw new AssertionError(exception);
         }
     }
@@ -140,35 +129,26 @@ public abstract class AbstractBeanTest {
      * @param classUnderTest the Class Under Test
      */
     protected void assertMeetsHashCodeContract(Class<?> classUnderTest) {
-
         try {
-
             Class<?> currentClass = classUnderTest;
 
             while (currentClass != Object.class) {
-
                 for (Field field : currentClass.getDeclaredFields()) {
-
                     Object instance = classUnderTest.getDeclaredConstructor().newInstance();
                     int initialHashCode = instance.hashCode();
 
                     // Ignore Fields that are not accessible (with a Getter/Setter)
-                    if (Modifier.isPrivate(field.getModifiers()) && !Modifier.isFinal(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())
+                    if (Modifier.isPrivate(field.getModifiers())
+                            && !Modifier.isFinal(field.getModifiers())
+                            && !Modifier.isStatic(field.getModifiers())
                             && !field.getType().isInterface()) {
-
-                        setFieldValueByFieldType(field, instance, Boolean.TRUE);
-
-                        int updatedHashCode = instance.hashCode();
-
-                        assertThat(initialHashCode == updatedHashCode).isFalse();
+                        injectFieldValueByFieldType(field, instance, Boolean.TRUE);
+                        assertThat(initialHashCode == instance.hashCode()).isFalse();
                     }
                 }
-
-                // Move to the Super Class, so we test all accessible Fields
                 currentClass = currentClass.getSuperclass();
             }
         } catch (Exception exception) {
-
             throw new AssertionError(exception);
         }
     }
@@ -179,31 +159,24 @@ public abstract class AbstractBeanTest {
      * @param classUnderTest the Class Under Test
      */
     protected void assertToStringContract(Class<?> classUnderTest) {
-
         Object instance;
-
         try {
-
             instance = classUnderTest.getDeclaredConstructor().newInstance();
         } catch (Exception exception) {
-
             throw new AssertionError(exception);
         }
-
         assertThat(instance.toString()).isNotEmpty();
     }
 
     /**
-     * Set the Field Value using the Field Type and whether we should use the Minimum Value (or Maximum).
+     * Injects the Field Value using the Field Type and whether we should use the Minimum Value (or Maximum).
      *
      * @param field           the Field
      * @param instance        the Instance
      * @param useMinimumValue the Use Minimum Value Flag
      */
-    private void setFieldValueByFieldType(Field field, Object instance, boolean useMinimumValue) {
-
+    private void injectFieldValueByFieldType(Field field, Object instance, boolean useMinimumValue) {
         try {
-
             switch (field.getType().getName()) {
                 case "java.lang.String":
                     injectString(field, instance, useMinimumValue);
@@ -253,8 +226,6 @@ public abstract class AbstractBeanTest {
                     }
                     break;
             }
-
-
         } catch (Exception exception) {
 
             throw new AssertionError(exception);
@@ -340,6 +311,4 @@ public abstract class AbstractBeanTest {
             setPropertyValue(field.getName(), instance, new Timestamp(Integer.MAX_VALUE), field.getType());
         }
     }
-
-
 }
