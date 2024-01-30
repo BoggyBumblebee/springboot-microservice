@@ -6,7 +6,7 @@
 		<artifactId>springboot-microservice</artifactId>
 		<groupId>com.boggybumblebee.springboot</groupId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>config-server</artifactId>
 	<name>config-server</name>
