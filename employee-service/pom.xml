@@ -6,6 +6,7 @@
 		<artifactId>springboot-microservice</artifactId>
 		<groupId>com.boggybumblebee.springboot</groupId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>employee-service</artifactId>
 	<version>${project.parent.version}</version>
