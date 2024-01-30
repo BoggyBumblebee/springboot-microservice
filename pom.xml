@@ -21,6 +21,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <modules>
+        <module>common</module>
         <module>api-gateway</module>
         <module>config-server</module>
         <module>department-service</module>
@@ -45,14 +46,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
     <scm>
         <url>https://github.com/boggybublebee/springboot-microservice</url>
         <connection>scm:git:git://github.com/boggybublebee/springboot-microservice.git</connection>
