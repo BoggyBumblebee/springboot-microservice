@@ -66,6 +66,7 @@
                 </dependencies>
                 <configuration>
                     <threadCount>1</threadCount>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -77,6 +78,9 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <propertyName>surefire.argLine</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>report</id>
