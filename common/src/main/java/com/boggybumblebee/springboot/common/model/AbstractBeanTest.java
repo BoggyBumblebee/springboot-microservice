@@ -53,33 +53,28 @@ public abstract class AbstractBeanTest {
      * @param classUnderTest the Class Under Test
      */
     protected void assertMeetsPojoContract(Class<?> classUnderTest) {
-
         Object instance;
 
         try {
-
             instance = classUnderTest.getDeclaredConstructor().newInstance();
         } catch (Exception exception) {
-
             throw new AssertionError(exception);
         }
 
         Class<?> currentClass = classUnderTest;
 
         while (currentClass != Object.class) {
-
             for (Field field : currentClass.getDeclaredFields()) {
-
                 // Ignore Fields that are not accessible (with a Getter/Setter)
-                if (Modifier.isPrivate(field.getModifiers()) && !Modifier.isFinal(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())
+                if (Modifier.isPrivate(field.getModifiers())
+                        && !Modifier.isFinal(field.getModifiers())
+                        && !Modifier.isStatic(field.getModifiers())
                         && !field.getType().isInterface()) {
 
                     assertThat(hasGetter(field.getName(), instance)).isTrue();
                     assertThat(hasSetter(field.getName(), instance, field.getType())).isTrue();
                 }
             }
-
-            // Move to the Super Class, so we test all accessible Fields
             currentClass = currentClass.getSuperclass();
         }
     }

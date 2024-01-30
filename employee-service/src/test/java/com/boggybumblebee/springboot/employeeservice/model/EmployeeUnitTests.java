@@ -9,9 +9,7 @@ public class EmployeeUnitTests extends AbstractBeanTest {
 
     @Override
     @Test
-    public void testPojoContractMet() {
-        super.assertMeetsPojoContract(CLASS_UNDER_TEST);
-    }
+    public void testPojoContractMet() { super.assertMeetsPojoContract(CLASS_UNDER_TEST); }
 
     @Override
     @Test
