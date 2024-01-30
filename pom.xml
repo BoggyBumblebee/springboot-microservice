@@ -51,4 +51,9 @@
             </plugin>
         </plugins>
     </build>
+    <scm>
+        <url>https://github.com/boggybublebee/springboot-microservice</url>
+        <connection>scm:git:git://github.com/boggybublebee/springboot-microservice.git</connection>
+        <developerConnection>scm:git:git@github.com:boggybublebee/springboot-microservice.git</developerConnection>
+    </scm>
 </project>
