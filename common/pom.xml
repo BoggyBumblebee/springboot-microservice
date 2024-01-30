@@ -6,10 +6,9 @@
         <artifactId>springboot-microservice</artifactId>
         <groupId>com.boggybumblebee.springboot</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <relativePath/>
     </parent>
     <artifactId>common</artifactId>
-    <version>${project.parent.version}</version>
     <name>common</name>
     <description>common</description>
     <dependencies>

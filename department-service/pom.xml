@@ -8,7 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>department-service</artifactId>
-	<version>${project.parent.version}</version>
 	<name>department-service</name>
 	<description>department-service</description>
 	<dependencies>
